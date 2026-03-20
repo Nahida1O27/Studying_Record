@@ -1,0 +1,65 @@
+---
+#C++文件设置
+If:
+    PathMatch: [.*\.cpp, .*\.cxx, .*\.cc, .*\.hpp, .*\.hxx, .*\.hh]
+    PathExclude: [.*\.c]
+CompileFlags:
+    CompilationDatabase: "build/compile_commands.json"
+    Compiler: clang++
+    Add:
+    - "-std=c++23"
+    - "-Wall"
+    - "-Wextra"
+    - "-ID:/DEV/thirdpartyLib/include"
+    # - "-I../include"
+    # - "-DDEBUG"
+    # - "-lc++"
+    Remove:
+    - "-Wunused-but-set-variable"
+
+Diagnostics:
+    ClangTidy:
+        Add: 
+        - "clang-analyzer-*"
+        - "bugprone-*"
+        - "performance-*"
+        - "modernize-*"
+        - "readability-*"
+        Remove:
+        - "modernize-use-trailing-return-type"
+        - "readability-identifier-length"
+    UnusedIncludes: Strict
+    Suppress:
+
+Index:
+    Background: Build
+    StandardLibrary: true
+    # External:
+        # MountPoint: "D:/DEV/thirdpartyLib/include"
+
+InlayHints:
+    Enabled: true
+    ParameterNames: true
+    DeducedTypes: true
+    Designators: true
+
+Hover:
+    ShowAKA: true
+
+
+---
+#C文件设置
+If:
+    PathMatch: [.*\.c]
+    PathExclude: [.*\.cpp, .*\.cxx, .*\.cc, .*\.hpp, .*\.hxx, .*\.hh]
+    
+CompileFlags:
+    CompilationDatabase: "build/compile_commands.json"
+    Compiler: clang
+    Add:
+    - "-std=c23"
+    - "-Wall"
+    - "-Wextra"
+    - "-ID:/DEV/thirdpartyLib/include"
+    # - "-I../include"
+    # - "-DDEBUG"
